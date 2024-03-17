@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Fisp Registration Port</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MULIMI/font-awesome/5.15.3/css/all.min.css" integrity="sha384-ezCs2ApVToJlAwCY/4ezMouGEx3MBeLs7be9TaT3TqY49aiKjF32N53C6XppaSN7" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS for responsiveness */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+        }
+        h1 {
+            margin: 0;
+            padding-left: 10px;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+        li {
+            float: left;
+        }
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        li a:hover {
+            background-color: #111;
+        }
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+        .dropdown .dropbtn {
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            margin: 0;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 160px;
+            z-index: 1;
+        }
+        .dropdown-content a {
+            float: none;
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .dropdown-content a:hover {
+            background-color: #111;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .Home-display {
+            padding: 20px;
+            text-align: center;
+        }
+        /* Media queries for responsiveness */
+        @media only screen and (max-width: 600px) {
+            /* For mobile phones */
+            .container {
+                flex-direction: column;
+            }
+            h1 {
+                padding: 10px;
+            }
+            li {
+                float: none;
+            }
+            .dropdown {
+                float: none;
+            }
+            .dropdown-content {
+                position: relative;
+            }
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <div class="container">
+            <a href="home.html"><img src="Pic1.png" alt="E-Fisp Registration Portal"></a>
+            <h1>E-Fisp Registration Portal</h1>
+        </div>
+        <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#news"><i class="fas fa-info-circle"></i> About</a></li>
+        <li><a href="Login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+        <li> 
+            <div class="dropdown">
+                <button class="dropbtn">Sign in as</button>
+                <div class="dropdown-content">
+                    <a href="Leader.html">Cooperative Leader</a>
+                    <a href="Member.html">Member</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="dropdown">
+                <button class="dropbtn">Language</button>
+                <div class="dropdown-content">
+                    <a href="Chichewa.html">Chichewa</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="Home-display">
+        <br><br><br><br><br><br><br><br><br>
+        <h2>Be a farmer and save the nation</h2>
+        <p>E-Fisp under Ministry of Agriculture brings to you an Online Registration platform to interact within the comfort of your homes.</p> <br>
+        Gain income from agriculture <br><br>
+        ELECTRONIC-FARMERS <br> INPUT <br> SUPPORT PROGRAMME / E-FISP
+    </div>
+</body>
+</html>

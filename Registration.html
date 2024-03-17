@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FISP Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-align: center; /* Center-align the content */
+            background-color:rgb(56, 128, 9);
+           color:  rgba(221, 161, 32, 0.973);
+        }
+
+        /* Style the registration form container */
+        #registration {
+            max-width: 600px; /* Set a maximum width for the form */
+            margin: auto; /* Center the form horizontally */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-top: 50px; /* Add some space at the top */
+        }
+
+        /* Style the form elements */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-bottom: 10px;
+            display: block;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color:white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: black;
+        }
+
+        button:hover {
+            background-color: #d8c200;
+          
+        }
+
+        footer {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Content Section -->
+    <div id="home">
+        <h1>  Register with  E-FISP</h1>
+        <p>Empowering farmers through technology.</p>
+    </div>
+
+    <!-- Registration Form Section -->
+    <div id="registration">
+      
+        <form action="/register" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="username" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="password" required>
+
+            <label for="province">Province:</label>
+            <select id="province" onchange="updateConstituencies()">
+                <option value="central">Central Province</option>
+                <option value="copperbelt">Copperbelt Province</option>
+                <option value="Lusaka">Lusaka</option>
+                <option value="Eastern">Eastern</option>
+                <option value="Luapula">Luapula</option>
+                <option value="Western">Western</option>
+                <option value="Southern">Southern</option>
+                <option value="NorthWestern">NorthWestern</option>
+                <option value="Northern">Northern</option>
+                <option value="Muchinga">Muchinga</option>
+        
+            </select>
+        
+            <label for="constituency">Constituency:</label>
+            <select id="constituency">
+                <!-- Constituencies will be populated dynamically based on the selected province -->
+            </select>
+        
+            
+
+            <label for="Cooperative">Cooperative:</label>
+            <input type="text" id="Cooperative" placeholder="Cooperative Name" name="Cooperative" required>
+
+            <button type="submit" >Submit Registration</button>
+        </form>
+
+        <script>
+            // Define constituencies for each province
+            const constituencies = {
+                Lusaka: ["Chawama","Chilanga","Chirundu","Chongwe","Feira","Kabwata","Kafue","Kanyama","Lusaka Central","Mandevu","Matero","Rufunsa","Munali"],
+                central: ["Bwacha", "Chisamba", "Chitambo", "Itezhi-Tezhi", "Kabwe Central", "Kapiri Mposhi", "Katuba", "Keembe", "Lufubu", "Mkushi North", "Mkushi South", "Muchinga", "Mumbwa", "Mwembeshi", "Nangoma", "Serenje"],
+                copperbelt: ["Bwana Mkubwa", "Chifubu", "Chililabombwe", "Chimwemwe", "Chingola", "Kabushi", "Kafulafuta", "Kalulushi", "Kamfinsa", "Kankoyo", "Kantanshi", "Kwacha", "Luanshya", "Lufwanyama", "Masaiti", "Mpongwe", "Mufulira", "Nchanga", "Ndola Central", "Nkana", "Roan", "Wusakile"],
+                Eastern:["Chadiza", "Chasefu", "Chipangali", "Chipata Central", "Kapoche", "Kasenengwa", "Kaumbwe", "Luangeni", "Lumezi", "Lundazi", "Malambo", "Milanzi", "Mkaika", "Msanzala", "Nyimba", "Petauke Central", "Sinda", "Vubwi"],
+                Luapula:["Bahati", "Bangweulu", "Chembe", "Chienge", "Chifunabuli", "Chipili", "Kawambwa", "Luapula", "Mambilima", "Mansa Central", "Milenge", "Mwansabombwe", "Mwense", "Nchelenge", "Pambashe"],
+                Western:["Kalabo Central", "Kaoma", "Liuwa", "Luampa", "Luena", "Lukulu East", "Mangango", "Mitete", "Mongu Central", "Mulobezi", "Mwandi", "Nalikwanda", "Nalolo", "Nkeyema", "Senanga", "Sesheke", "Shang’ombo", "Sikongo", "Sioma"],
+                Southern:["Bweengwa", "Chikankata", "Choma", "Dundumwenzi", "Gwembe", "Kalomo Central", "Katombola", "Livingstone", "Magoye", "Mapatizya", "Mazabuka Central", "Mbabala", "Monze", "Moomba", "Namwala", "Pemba", "Siavonga", "Sinazongwe"],
+                NorthWestern:["Chavuma", "Ikeleng'i", "Kabompo", "Kasempa", "Manyinga", "Mufumbwe", "Mwinilunga", "Solwezi Central", "Solwezi East", "Solwezi West", "Zambezi East", "Zambezi West"],
+                Northern:["Chilubi", "Chimbamilonga", "Kaputa", "Kasama", "Lubansenshi", "Lukashya", "Lunte", "Lupososhi", "Malole", "Mbala", "Mporokoso", "Mpulungu", "Senga Hill"],
+                Muchinga:["Chama North", "Chama South", "Chinsali", "Isoka", "Kanchibiya", "Mafinga", "Mfuwe", "Mpika", "Nakonde", "Shiwa Ng'andu"]
+
+
+
+
+
+            };
+
+    
+            function updateConstituencies() {
+                // Get the selected province
+                const selectedProvince = document.getElementById("province").value;
+    
+                // Get the corresponding constituencies for the selected province
+                const selectedConstituencies = constituencies[selectedProvince];
+    
+                // Clear existing options
+                const constituencyDropdown = document.getElementById("constituency");
+                constituencyDropdown.innerHTML = "";
+    
+                // Populate the constituency dropdown with the selected constituencies
+                selectedConstituencies.forEach((constituency) => {
+                    const option = document.createElement("option");
+                    option.value = constituency;
+                    option.text = constituency;
+                    constituencyDropdown.appendChild(option);
+                });
+            }
+        </script>
+    </div><br><br><br><br>
+
+
+
+    <!-- Footer Section -->
+    <hr>
+    <footer>
+        <p>&copy; 2024 FISP Registration Web App. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>

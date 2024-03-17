@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-fisp Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-image: url(Pic6.png);
+            background-repeat: no-repeat;
+            background-size:cover;
+        
+        }
+        @keyframes slideInFromRight {
+        0% {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+        h1 {
+            text-align: center;
+        
+            margin: 0;
+            font-size: 24px;
+            color: #FFF;
+            font-family: 'Courier New', Courier, monospace;
+            transition: margin-left 0.5s ease-in-out; /* Adjust the duration and timing function as needed */
+            animation: slideInFromRight 1s ease-in-out; /* Adjust the duration and timing function as needed */
+        }
+        
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>E-fisp Registration</h1>
+
+    <form id="registrationForm">
+        <fieldset>
+            <!--<label for="fullName">Full Name:</label>-->
+            <input type="text" id="fullName" name="FullName" placeholder="Full Name" required>
+           <!--<label for="contactInfo">Contact Information:</label>-->
+            <input type="number" id="contactInfo" name="contactInfo" placeholder="Contact" required>
+
+           <!--<label for="nationalId">NRC:</label>--> 
+            <input type="number" id="nationalId" name="nationalId" placeholder="NRC" required >
+            
+            <label for="fileInput">Upload Front and Back Images:</label>
+            <input type="file" id="fileInput" name="images[]" accept="image/*" required multiple>
+          
+        </fieldset>
+
+        <fieldset>
+            <legend>Cooperative Information</legend>
+
+           <!--<label for="cooperativeName">Cooperative Name:</label>--> 
+            <input type="text" id="cooperativeName" name="cooperativeName" placeholder="cooperative Name" required>
+           <!-- <label for="CooperativeNumber">Cooperative Number</label>-->
+            <input type="text" id="CooperativeNumber" name="CooperativeNumber" placeholder="Cooperative Number" required>
+           <!-- <label for="province">Province:</label>-->
+            <select id="province" aria-placeholder="Province" onchange="updateConstituencies()">
+                <option value="central">Central Province</option>
+                <option value="copperbelt">Copperbelt Province</option>
+                <option value="Lusaka">Lusaka</option>
+                <option value="Eastern">Eastern</option>
+                <option value="Luapula">Luapula</option>
+                <option value="Western">Western</option>
+                <option value="Southern">Southern</option>
+                <option value="NorthWestern">NorthWestern</option>
+                <option value="Northern">Northern</option>
+                <option value="Muchinga">Muchinga</option>
+        
+            </select>
+        
+            <label for="constituency" placeholder="constituency"></label>
+            <select id="constituency">
+                
+                <!-- Constituencies will be populated dynamically based on the selected province -->
+            </select>
+        
+            <button type="submit" >Submit Registration</button>
+        </form>
+
+        
+    </div><br><br><br><br>
+
+
+         
+
+        </fieldset>
+
+       <!-- <fieldset>
+            <legend>Banking and Communication</legend>
+
+            <label for="bankDetails">Banking Information:</label>
+           
+            <input type="checkbox" id="termsAndConditions" name="termsAndConditions" required>
+            <label for="termsAndConditions">I agree to the terms and conditions</label>
+
+            <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
+
+            <label for="optInNotifications">Opt-in for Notifications:</label>
+            <input type="checkbox" id="optInNotifications" name="optInNotifications">
+        </fieldset>-->
+
+       
+    </form>
+
+    <script>
+        function submitForm() {
+            // Validate and submit form data
+            // You can add your validation logic here
+
+            // Example: Just logging the form data for demonstration purposes
+            const formData = new FormData(document.getElementById('registrationForm'));
+            for (const [key, value] of formData.entries()) {
+                console.log(`${key}: ${value}`);
+            }
+
+            // In a real-world scenario, you would send this data to a server for processing and storage.
+        }
+         // Define constituencies for each province
+         const constituencies = {
+                Lusaka: ["Chawama","Chilanga","Chirundu","Chongwe","Feira","Kabwata","Kafue","Kanyama","Lusaka Central","Mandevu","Matero","Rufunsa","Munali"],
+                central: ["Bwacha", "Chisamba", "Chitambo", "Itezhi-Tezhi", "Kabwe Central", "Kapiri Mposhi", "Katuba", "Keembe", "Lufubu", "Mkushi North", "Mkushi South", "Muchinga", "Mumbwa", "Mwembeshi", "Nangoma", "Serenje"],
+                copperbelt: ["Bwana Mkubwa", "Chifubu", "Chililabombwe", "Chimwemwe", "Chingola", "Kabushi", "Kafulafuta", "Kalulushi", "Kamfinsa", "Kankoyo", "Kantanshi", "Kwacha", "Luanshya", "Lufwanyama", "Masaiti", "Mpongwe", "Mufulira", "Nchanga", "Ndola Central", "Nkana", "Roan", "Wusakile"],
+                Eastern:["Chadiza", "Chasefu", "Chipangali", "Chipata Central", "Kapoche", "Kasenengwa", "Kaumbwe", "Luangeni", "Lumezi", "Lundazi", "Malambo", "Milanzi", "Mkaika", "Msanzala", "Nyimba", "Petauke Central", "Sinda", "Vubwi"],
+                Luapula:["Bahati", "Bangweulu", "Chembe", "Chienge", "Chifunabuli", "Chipili", "Kawambwa", "Luapula", "Mambilima", "Mansa Central", "Milenge", "Mwansabombwe", "Mwense", "Nchelenge", "Pambashe"],
+                Western:["Kalabo Central", "Kaoma", "Liuwa", "Luampa", "Luena", "Lukulu East", "Mangango", "Mitete", "Mongu Central", "Mulobezi", "Mwandi", "Nalikwanda", "Nalolo", "Nkeyema", "Senanga", "Sesheke", "Shang’ombo", "Sikongo", "Sioma"],
+                Southern:["Bweengwa", "Chikankata", "Choma", "Dundumwenzi", "Gwembe", "Kalomo Central", "Katombola", "Livingstone", "Magoye", "Mapatizya", "Mazabuka Central", "Mbabala", "Monze", "Moomba", "Namwala", "Pemba", "Siavonga", "Sinazongwe"],
+                NorthWestern:["Chavuma", "Ikeleng'i", "Kabompo", "Kasempa", "Manyinga", "Mufumbwe", "Mwinilunga", "Solwezi Central", "Solwezi East", "Solwezi West", "Zambezi East", "Zambezi West"],
+                Northern:["Chilubi", "Chimbamilonga", "Kaputa", "Kasama", "Lubansenshi", "Lukashya", "Lunte", "Lupososhi", "Malole", "Mbala", "Mporokoso", "Mpulungu", "Senga Hill"],
+                Muchinga:["Chama North", "Chama South", "Chinsali", "Isoka", "Kanchibiya", "Mafinga", "Mfuwe", "Mpika", "Nakonde", "Shiwa Ng'andu"]
+       };
+
+    
+            function updateConstituencies() {
+                // Get the selected province
+                const selectedProvince = document.getElementById("province").value;
+    
+                // Get the corresponding constituencies for the selected province
+                const selectedConstituencies = constituencies[selectedProvince];
+    
+                // Clear existing options
+                const constituencyDropdown = document.getElementById("constituency");
+                constituencyDropdown.innerHTML = "";
+    
+                // Populate the constituency dropdown with the selected constituencies
+                selectedConstituencies.forEach((constituency) => {
+                    const option = document.createElement("option");
+                    option.value = constituency;
+                    option.text = constituency;
+                    constituencyDropdown.appendChild(option);
+                });
+            }
+    </script>
+</body>
+</html>
